@@ -80,17 +80,17 @@ android {
         production {
             dimension "default"
             applicationIdSuffix ""
-            manifestPlaceholders = [appName: "Lamesa Apontamento"]
+            manifestPlaceholders = [appName: "Blucabos Apontamento"]
         }
         staging {
             dimension "default"
             applicationIdSuffix ".stg"
-            manifestPlaceholders = [appName: "[STG] Lamesa Apontamento"]
+            manifestPlaceholders = [appName: "[STG] Blucabos Apontamento"]
         }
         development {
             dimension "default"
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "[DEV] Lamesa Apontamento"]
+            manifestPlaceholders = [appName: "[DEV] Blucabos Apontamento"]
         }
     }
 

@@ -1,4 +1,4 @@
-# Lamesa Apontamento
+# Blucabos Apontamento
 
 ![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
@@ -31,7 +31,7 @@ $ flutter run --flavor staging --target lib/main_staging.dart
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*Lamesa Apontamento works on iOS, Android, Web, and Windows._
+_\*Blucabos Apontamento works on iOS, Android, Web, and Windows._
 
 ---
 
