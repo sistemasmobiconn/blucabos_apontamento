@@ -1,0 +1,1 @@
+export 'view/liberacao.dart';

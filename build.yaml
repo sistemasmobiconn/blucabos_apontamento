@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      freezed|freezed:
+        generate_for:
+          - "lib/controlled_input.dart"
+          - "lib/**/cubit/*_state.dart"
+          - "lib/**/cubit/*_cubit.dart"
+          - "lib/**/cubit/**/*_response.dart"
+          - "lib/**/cubit/**/*_request.dart"
+          - "lib/delayed_result.dart"
+          - "lib/apontamento/**.dart"
+        enabled: true
+        options:
+          format: false

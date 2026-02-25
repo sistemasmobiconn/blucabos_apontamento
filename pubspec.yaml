@@ -1,0 +1,56 @@
+name: blucabos_apontamento
+description: Aplicativo de apontamento de operações para a Lamesa.
+version: 2026.2.23+60
+publish_to: none
+
+environment:
+  sdk: ^3.4.0
+
+dependencies:
+  bloc: ^8.1.4
+  dio: ^5.7.0
+  dio_smart_retry: ^6.0.0
+  drift: ^2.22.1
+  drift_flutter: ^0.2.2
+  dropdown_search: ^6.0.1
+  dynamic_color: ^1.7.0
+  easy_debounce: ^2.0.3
+  either_dart: ^1.0.0
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_localizations:
+    sdk: flutter
+  flutter_loggy: ^2.0.3
+  flutter_loggy_dio: ^3.1.0
+  formz: ^0.7.0
+  freezed_annotation: ^2.4.4
+  google_fonts: ^6.2.1
+  intl: any
+  json_annotation: ^4.9.0
+  loggy: ^2.0.3
+  mobiconn_commons_flutter:
+    git:
+      url: "git@github.com:sistemasmobiconn/mobiconn_commons_flutter.git"
+      ref: "0.0.9+7"
+  package_info_plus: ^8.1.2
+  provider: ^6.1.2
+  rxdart: ^0.27.7
+  sentry_flutter: ^9.5.0
+  shared_preferences: ^2.5.3
+dev_dependencies:
+  bloc_test: ^9.1.7
+  build_runner: ^2.4.13
+  drift_dev: ^2.22.1
+  flutter_launcher_icons: ^0.14.2
+  flutter_test:
+    sdk: flutter
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
+  mocktail: ^1.0.4
+  very_good_analysis: ^7.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
