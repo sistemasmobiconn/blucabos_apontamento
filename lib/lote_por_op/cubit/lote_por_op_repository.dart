@@ -53,15 +53,14 @@ class LoteRelacaoValidacao {
 }
 
 class LotePorOpRepositoryImpl implements LotePorOpRepository {
-  LotePorOpRepositoryImpl({required SecondaryDio secondaryDio})
-      : _secondaryDio = secondaryDio;
+  LotePorOpRepositoryImpl({required Dio dio})
+      : _dio = dio;
 
-  final SecondaryDio _secondaryDio;
+  final Dio _dio;
 
   @override
   Future<Either<String, Unit>> send(
       String lote, String op, String posicao) async {
-    final dio = await _secondaryDio.reconfigured();
     final data = {
       'COD_EMPRESA': 2,
       'ID_PECA': lote,
@@ -69,7 +68,7 @@ class LotePorOpRepositoryImpl implements LotePorOpRepository {
       'POSICAO': posicao,
     };
     try {
-      await dio.post<void>('/datasnap/rest/tsmfv/loteOP', data: data);
+      await _dio.post<void>('/datasnap/rest/tsmfv/loteOP', data: data);
       return const Right(unit);
     } on DioException catch (e) {
       return Left(e.error.toString());
@@ -81,9 +80,8 @@ class LotePorOpRepositoryImpl implements LotePorOpRepository {
     String op,
     String codMaquina,
   ) async {
-    final dio = await _secondaryDio.reconfigured();
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getOpMaquinaPosicao/2/$op/$codMaquina',
       );
       final body = WsfvResponse.fromString(response.data!);

@@ -1,5 +1,6 @@
 // lib/screens/production_page.dart
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blucabos_apontamento/apontamento/apontamento_api.dart';
@@ -17,7 +18,7 @@ class ProductionPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => ProductionCubit(
         api: ApontamentoApi(
-          dio: context.read<SecondaryDio>(),
+          dio: context.read<Dio>(),
         ),
       ),
       child: BlocConsumer<ProductionCubit, ProductionState>(

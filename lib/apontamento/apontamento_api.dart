@@ -12,14 +12,13 @@ import 'package:loggy/loggy.dart';
 import 'package:mobiconn_commons_flutter/mobiconn_commons_flutter.dart';
 
 class ApontamentoApi {
-  ApontamentoApi({required SecondaryDio dio}) : _dio = dio;
+  ApontamentoApi({required Dio dio}) : _dio = dio;
 
-  final SecondaryDio _dio;
+  final Dio _dio;
 
   Future<List<ProductionOrder>> getIniciadas(String codMaquina) async {
-    final dio = await _dio.reconfigured();
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getOpMaquinaIniciada/2/$codMaquina',
       );
       return WsfvResponse.fromString(response.data!)
@@ -31,9 +30,8 @@ class ApontamentoApi {
   }
 
   Future<List<ProductionOrder>> getOpsNaoIniciadas(String codMaquina) async {
-    final dio = await _dio.reconfigured();
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getOpMaquinaNaoIniciada/2/$codMaquina',
       );
       return WsfvResponse.fromString(response.data!)
@@ -48,9 +46,8 @@ class ApontamentoApi {
     required int codEmpresa,
     required int numOrdem,
   }) async {
-    final dio = await _dio.reconfigured();
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getOPMaquina/$codEmpresa/$numOrdem',
       );
       final body = WsfvResponse.fromString(response.data!);
@@ -62,9 +59,8 @@ class ApontamentoApi {
   }
 
   Future<List<Operador>> getOperadores() async {
-    final dio = await _dio.reconfigured();
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getOperadores/2',
       );
       final body = WsfvResponse.fromString(response.data!);
@@ -79,7 +75,6 @@ class ApontamentoApi {
     required ProductionOrder op,
     required ApontarParams params,
   }) async {
-    final dio = await _dio.reconfigured();
     try {
       final reqBody = {
         'cod_empresa': op.codEmpresa,
@@ -94,7 +89,7 @@ class ApontamentoApi {
         'local_destino': params.localDestino,
       };
       logDebug('ApontarOP: $reqBody');
-      return dio.post<String>(
+      return _dio.post<String>(
         '/datasnap/rest/tsmfv/ApontarOP',
         data: reqBody,
       );
@@ -105,9 +100,8 @@ class ApontamentoApi {
     required DateTime timestamp,
     required ProductionOrder op,
   }) async {
-    final dio = await _dio.reconfigured();
     try {
-      return dio.post<String>(
+      return _dio.post<String>(
         '/datasnap/rest/tsmfv/IniciarOP',
         data: {
           'cod_empresa': op.codEmpresa,
@@ -121,10 +115,8 @@ class ApontamentoApi {
   }
 
   Future<List<ProductionOrder>> getOPs({required String codMaquina}) async {
-    final dio = await _dio.reconfigured();
-
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getMaquinaOP/2/$codMaquina',
       );
       final body = WsfvResponse.fromString(response.data!);
@@ -136,9 +128,8 @@ class ApontamentoApi {
   }
 
   Future<Response<String>> finalizar(ProductionOrder e) async {
-    final dio = await _dio.reconfigured();
     try {
-      final response = await dio.post<String>(
+      final response = await _dio.post<String>(
         '/datasnap/rest/tsmfv/FinalizarApontamentoOP',
         data: {
           'cod_empresa': e.codEmpresa,
@@ -154,8 +145,7 @@ class ApontamentoApi {
 
   Future<String?> getLote(ProductionOrder op) async {
     try {
-      final dio = await _dio.reconfigured();
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getOPUltimoLote/${op.codEmpresa}/${op.numOrdem}/${op.codMaquina}',
       );
       return WsfvResponse.fromString(response.data!)
@@ -170,9 +160,8 @@ class ApontamentoApi {
   }
 
   Future<List<LocalDestino>> getLocaisDestino(ProductionOrder op) async {
-    final dio = await _dio.reconfigured();
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getLocaisApontamento/${op.codEmpresa}/${op.numOrdem}',
       );
       final body = WsfvResponse.fromString(response.data!);
@@ -187,9 +176,8 @@ class ApontamentoApi {
   }
 
   Future<List<MotivoReprova>> getMotivosReprova(ProductionOrder op) async {
-    final dio = await _dio.reconfigured();
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getMotivoReprova/${op.codEmpresa}',
       );
       final body = WsfvResponse.fromString(response.data!);
@@ -209,7 +197,6 @@ class ApontamentoApi {
     required int apontamentoLote,
     required int impressora,
   }) async {
-    final dio = await _dio.reconfigured();
     final data = {
       'cod_empresa': 2,
       'num_ordem': numOrdem,
@@ -218,16 +205,15 @@ class ApontamentoApi {
       'id_impressora': impressora,
     };
     logDebug('Reimprimir: $data');
-    await dio.post<void>(
+    await _dio.post<void>(
       '/datasnap/rest/tsmfv/imprimirEtiqueta',
       data: data,
     );
   }
 
   Future<List<Lote>> getLotesReimpressao(String codMaquina) async {
-    final dio = await _dio.reconfigured();
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getLotesMaquina/2/$codMaquina',
       );
 
@@ -244,9 +230,8 @@ class ApontamentoApi {
   }
 
   Future<List<Impressora>> getImpressoras() async {
-    final dio = await _dio.reconfigured();
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getImpressorasEtiqueta/2',
       );
       final body = WsfvResponse.fromString(response.data!);
@@ -261,9 +246,8 @@ class ApontamentoApi {
   }
 
   Future<List<MaquinaReimpressao>> getMaquinasReimpressao() async {
-    final dio = await _dio.reconfigured();
     try {
-      final response = await dio.get<String>(
+      final response = await _dio.get<String>(
         '/datasnap/rest/tsmfv/getMaquinas/2',
       );
       final body = WsfvResponse.fromString(response.data!);

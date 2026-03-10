@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,11 +20,11 @@ class OpIniciadasPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        final secondaryDio = context.read<SecondaryDio>();
+        final dio = context.read<Dio>();
         return OpIniciadasCubit(
           const OpIniciadasState(),
           api: ApontamentoApi(
-            dio: secondaryDio,
+            dio: dio,
           ),
         );
       },
@@ -327,7 +328,7 @@ class OrdemProducaoIniciada extends StatelessWidget {
                             return ApontamentoFormCubit(
                               op: item.item,
                               api: ApontamentoApi(
-                                  dio: context.read<SecondaryDio>()),
+                                  dio: context.read<Dio>()),
                               storage:
                                   context.read<Future<SharedPreferences>>(),
                             )..init();

@@ -40,7 +40,7 @@ class _LotePorOpPageState extends State<LotePorOpPage> {
     _cubit = LotePorOpCubit(
       LotePorOpState.initialState(),
       repository: LotePorOpRepositoryImpl(
-        secondaryDio: context.read(),
+        dio: context.read(),
       ),
     );
   }
