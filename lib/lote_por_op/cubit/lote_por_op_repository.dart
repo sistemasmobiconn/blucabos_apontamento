@@ -62,7 +62,7 @@ class LotePorOpRepositoryImpl implements LotePorOpRepository {
   Future<Either<String, Unit>> send(
       String lote, String op, String posicao) async {
     final data = {
-      'COD_EMPRESA': 2,
+      'COD_EMPRESA': 1,
       'ID_PECA': lote,
       'NUM_ORDEM': op,
       'POSICAO': posicao,

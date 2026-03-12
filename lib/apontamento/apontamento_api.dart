@@ -198,7 +198,7 @@ class ApontamentoApi {
     required int impressora,
   }) async {
     final data = {
-      'cod_empresa': 2,
+      'cod_empresa': 1,
       'num_ordem': numOrdem,
       'id_apon': apontamento,
       'id_apon_lote': apontamentoLote,

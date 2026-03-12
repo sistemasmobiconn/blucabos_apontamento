@@ -52,7 +52,7 @@ class LiberacaoCubit extends Cubit<LiberacaoState> {
         data: {
           'lote': state.lote,
           'dest': state.destino,
-          'empresa': 2,
+          'empresa': 1,
         },
       );
 
