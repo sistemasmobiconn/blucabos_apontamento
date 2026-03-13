@@ -1,6 +1,6 @@
 name: blucabos_apontamento
 description: Aplicativo de apontamento de operações para a Blucabos.
-version: 2026.2.23+60
+version: 2026.3.13+61
 publish_to: none
 
 environment:
